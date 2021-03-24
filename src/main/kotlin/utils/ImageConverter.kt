@@ -2,6 +2,7 @@ package utils
 
 import org.ghost4j.document.PDFDocument
 import org.ghost4j.renderer.SimpleRenderer
+import userinterface.Userinterface
 import java.awt.image.BufferedImage
 import java.awt.image.RenderedImage
 import java.io.File

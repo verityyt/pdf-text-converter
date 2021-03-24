@@ -1,8 +1,10 @@
+import userinterface.FileChooser
 import userinterface.Userinterface
 import utils.ImageConverter
 import utils.Logger
 import utils.TextRecognizer
 import java.io.File
+import kotlin.system.exitProcess
 
 object PdfToTextConverter {
 
@@ -23,6 +25,7 @@ object PdfToTextConverter {
         }
 
         Userinterface.open()
+        Userinterface.setTitle(extension = "Select a region and press ENTER")
 
     }
 

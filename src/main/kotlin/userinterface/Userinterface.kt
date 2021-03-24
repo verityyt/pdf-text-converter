@@ -22,6 +22,8 @@ object Userinterface {
     var dragEndX = 0
     var dragEndY = 0
 
+    var show = true
+
     fun open() {
 
         Logger.info("Opening frame...")
@@ -36,55 +38,56 @@ object Userinterface {
 
         val comp = object : JComponent() {
             override fun paint(g: Graphics) {
-                val g2 = g as Graphics2D
+                if (show) {
+                    val g2 = g as Graphics2D
 
-                g2.setRenderingHint(
-                    RenderingHints.KEY_RENDERING,
-                    RenderingHints.VALUE_RENDER_QUALITY
-                )
-                g2.setRenderingHint(
-                    RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON
-                )
-                g2.setRenderingHint(
-                    RenderingHints.KEY_TEXT_ANTIALIASING,
-                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON
-                )
-                g2.setRenderingHint(
-                    RenderingHints.KEY_STROKE_CONTROL,
-                    RenderingHints.VALUE_STROKE_NORMALIZE
-                )
-                g2.setRenderingHint(
-                    RenderingHints.KEY_INTERPOLATION,
-                    RenderingHints.VALUE_INTERPOLATION_BILINEAR
-                )
-                g2.setRenderingHint(
-                    RenderingHints.KEY_FRACTIONALMETRICS,
-                    RenderingHints.VALUE_FRACTIONALMETRICS_ON
-                )
+                    g2.setRenderingHint(
+                        RenderingHints.KEY_RENDERING,
+                        RenderingHints.VALUE_RENDER_QUALITY
+                    )
+                    g2.setRenderingHint(
+                        RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON
+                    )
+                    g2.setRenderingHint(
+                        RenderingHints.KEY_TEXT_ANTIALIASING,
+                        RenderingHints.VALUE_TEXT_ANTIALIAS_ON
+                    )
+                    g2.setRenderingHint(
+                        RenderingHints.KEY_STROKE_CONTROL,
+                        RenderingHints.VALUE_STROKE_NORMALIZE
+                    )
+                    g2.setRenderingHint(
+                        RenderingHints.KEY_INTERPOLATION,
+                        RenderingHints.VALUE_INTERPOLATION_BILINEAR
+                    )
+                    g2.setRenderingHint(
+                        RenderingHints.KEY_FRACTIONALMETRICS,
+                        RenderingHints.VALUE_FRACTIONALMETRICS_ON
+                    )
 
-                val image = ImageIO.read(images[curImageIndex])
-                g.drawImage(image, 0, -35, 638, 825, this)
+                    val image = ImageIO.read(images[curImageIndex])
+                    g.drawImage(image, 0, -35, 638, 825, this)
 
-                g.font = g.font.deriveFont(72f)
-                g.color = Color.black
+                    g.font = g.font.deriveFont(72f)
+                    g.color = Color.black
 
-                g.drawString("<", 10, 371)
-                g.drawString(">", 575, 371)
+                    g.drawString("<", 10, 371)
+                    g.drawString(">", 575, 371)
 
-                val rectW = (dragEndX - dragStartX)
-                val rectH = (dragEndY - dragStartY)
-                val color = Color.decode("#3498db")
+                    val rectW = (dragEndX - dragStartX)
+                    val rectH = (dragEndY - dragStartY)
+                    val color = Color.decode("#3498db")
 
-                g.color = color
-                g.stroke = BasicStroke(3f)
-                g.drawRect(dragStartX, dragStartY, rectW, rectH)
+                    g.color = color
+                    g.stroke = BasicStroke(3f)
+                    g.drawRect(dragStartX, dragStartY, rectW, rectH)
 
-                g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)
-                g2.fillRect(dragStartX, dragStartY, rectW, rectH)
+                    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)
+                    g2.fillRect(dragStartX, dragStartY, rectW, rectH)
 
-                g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)
-
+                    g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)
+                }
             }
         }
 
@@ -135,11 +138,13 @@ object Userinterface {
     }
 
     fun setTitle(title: String = "PDF to Text Converter", extension: String = "") {
-        if(extension == "") {
+        frame.isVisible = false
+        if (extension != "") {
             frame.title = "$title | $extension"
-        }else {
+        } else {
             frame.title = title
         }
+        frame.isVisible = true
     }
 
 }

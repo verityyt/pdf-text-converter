@@ -6,11 +6,14 @@ import utils.Logger
 import utils.TextRecognizer
 import java.awt.Color
 import java.awt.Rectangle
+import java.awt.Toolkit
+import java.awt.datatransfer.StringSelection
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
+import javax.tools.Tool
 import kotlin.math.absoluteValue
 
 
@@ -56,7 +59,9 @@ class KeyboardListener : KeyListener {
 
                     Thread.sleep(1500)
 
-                    println("Detection:\n${TextRecognizer.detect()}")
+                    Userinterface.setTitle(extension = "Copied to clipboard")
+                    Userinterface.show = false
+                    Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(TextRecognizer.detect()), null)
                 }
             }
         }
