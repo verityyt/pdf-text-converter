@@ -8,7 +8,6 @@ import java.io.File
 import javax.imageio.ImageIO
 import javax.swing.JComponent
 import javax.swing.JFrame
-import kotlin.math.absoluteValue
 
 object Userinterface {
 
@@ -24,9 +23,9 @@ object Userinterface {
 
     fun open() {
 
-        val output = File("output\\")
+        val converted = File("${PdfToTextConverter.temp.absolutePath}\\converted\\")
 
-        for (file in output.listFiles()!!) {
+        for (file in converted.listFiles()!!) {
             images.add(file)
         }
 

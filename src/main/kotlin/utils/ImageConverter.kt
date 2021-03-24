@@ -12,8 +12,6 @@ object ImageConverter {
 
     fun convert(file: File) {
 
-        val temp = File(System.getProperty("java.io.tmpdir"))
-
         val doc = PDFDocument()
         doc.load(file)
 
@@ -22,10 +20,10 @@ object ImageConverter {
 
         val images = renderer.render(doc)
 
-        val folder = File("output\\")
+        val folder = File("${PdfToTextConverter.temp.absolutePath}\\converted\\")
 
         folder.deleteRecursively()
-        folder.mkdir()
+        folder.mkdirs()
 
         for (i in images.indices) {
             val image = images[i]
@@ -35,7 +33,7 @@ object ImageConverter {
             graphics2D.drawImage(image, 0, 0, 638, 825, null)
             graphics2D.dispose()
 
-            ImageIO.write(resizedImage as RenderedImage, "png", File(("output//page${i + 1}").toString() + ".png"))
+            ImageIO.write(resizedImage as RenderedImage, "png", File(("${folder.absolutePath}\\page${i + 1}").toString() + ".png"))
         }
 
     }

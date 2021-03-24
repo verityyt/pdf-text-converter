@@ -1,6 +1,7 @@
 package userinterface.listener
 
 import userinterface.Userinterface
+import utils.TextRecognizer
 import java.awt.Color
 import java.awt.Rectangle
 import java.awt.event.KeyEvent
@@ -24,8 +25,6 @@ class KeyboardListener : KeyListener {
 
             if (keyCode == 10) {
                 if (Userinterface.dragStartY != 0) {
-                    println("Saving to file...")
-
                     val image = ImageIO.read(Userinterface.getCurrent())!!
                     val rectW = (Userinterface.dragEndX - Userinterface.dragStartX)
                     val rectH = ((Userinterface.dragEndY + 35) - (Userinterface.dragStartY + 35))
@@ -37,9 +36,17 @@ class KeyboardListener : KeyListener {
                         rectW,
                         rectH,
                     )!!
-                    ImageIO.write(cropped, "jpg", File("cropped.jpg"))
-                } else {
-                    println("Please select a region first")
+
+                    val folder = File("${PdfToTextConverter.temp.absolutePath}\\current\\")
+
+                    folder.deleteRecursively()
+                    folder.mkdirs()
+
+                    ImageIO.write(cropped, "jpg", File("${folder.absolutePath}\\region.jpg"))
+
+                    Thread.sleep(2000)
+
+                    println(TextRecognizer.detect())
                 }
             }
         }
