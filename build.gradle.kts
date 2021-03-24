@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     implementation("org.ghost4j:ghost4j:1.0.0")
+    implementation("net.sourceforge.tess4j:tess4j:3.4.2")
 
     implementation(kotlin("stdlib"))
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
