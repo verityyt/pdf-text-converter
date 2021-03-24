@@ -1,5 +1,6 @@
 import userinterface.Userinterface
 import utils.ImageConverter
+import utils.Logger
 import utils.TextRecognizer
 import java.io.File
 
@@ -13,6 +14,8 @@ object PdfToTextConverter {
     fun main(args: Array<String>) {
 
         // Requires Ghostscript
+
+        Logger.info("Please select a file!")
 
         ImageConverter.convert(file)
 

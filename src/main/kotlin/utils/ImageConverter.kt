@@ -12,13 +12,22 @@ object ImageConverter {
 
     fun convert(file: File) {
 
+        Logger.info("Converting ${file.name} to images...")
+
+        Logger.debug("Loading document...")
+
         val doc = PDFDocument()
         doc.load(file)
+
+        Logger.debug("Rendering document...")
 
         val renderer = SimpleRenderer()
         renderer.resolution = 300
 
         val images = renderer.render(doc)
+
+        Logger.debug("Converted document to images!")
+        Logger.debug("Saving converted images to temp folder...")
 
         val folder = File("${PdfToTextConverter.temp.absolutePath}\\converted\\")
 
@@ -35,6 +44,8 @@ object ImageConverter {
 
             ImageIO.write(resizedImage as RenderedImage, "png", File(("${folder.absolutePath}\\page${i + 1}").toString() + ".png"))
         }
+
+        Logger.info("Successfully converted document to images!")
 
     }
 

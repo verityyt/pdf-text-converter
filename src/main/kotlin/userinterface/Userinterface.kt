@@ -3,6 +3,7 @@ package userinterface
 import userinterface.listener.KeyboardListener
 import userinterface.listener.MouseClickListener
 import userinterface.listener.MouseMotionListener
+import utils.Logger
 import java.awt.*
 import java.io.File
 import javax.imageio.ImageIO
@@ -22,6 +23,8 @@ object Userinterface {
     var dragEndY = 0
 
     fun open() {
+
+        Logger.info("Opening frame...")
 
         val converted = File("${PdfToTextConverter.temp.absolutePath}\\converted\\")
 
@@ -100,6 +103,8 @@ object Userinterface {
         frame.isVisible = true
         frame.isAlwaysOnTop = false
 
+        Logger.info("Opened frame (on top)!")
+
         Thread {
             while (true) {
                 Thread.sleep(1000 / 60)
@@ -127,6 +132,14 @@ object Userinterface {
 
     fun getCurrent(): File {
         return images[curImageIndex]
+    }
+
+    fun setTitle(title: String = "PDF to Text Converter", extension: String = "") {
+        if(extension == "") {
+            frame.title = "$title | $extension"
+        }else {
+            frame.title = title
+        }
     }
 
 }

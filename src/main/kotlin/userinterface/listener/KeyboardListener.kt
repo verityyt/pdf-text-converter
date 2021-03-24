@@ -1,6 +1,8 @@
 package userinterface.listener
 
+import sun.rmi.runtime.Log
 import userinterface.Userinterface
+import utils.Logger
 import utils.TextRecognizer
 import java.awt.Color
 import java.awt.Rectangle
@@ -25,9 +27,15 @@ class KeyboardListener : KeyListener {
 
             if (keyCode == 10) {
                 if (Userinterface.dragStartY != 0) {
+                    Logger.info("Cutting out regions...")
+
+                    Logger.debug("Calculate region coordinates...")
+
                     val image = ImageIO.read(Userinterface.getCurrent())!!
                     val rectW = (Userinterface.dragEndX - Userinterface.dragStartX)
                     val rectH = ((Userinterface.dragEndY + 35) - (Userinterface.dragStartY + 35))
+
+                    Logger.debug("Calculation finished! Cropping image...")
 
                     val cropped = cropImage(
                         image,
@@ -42,11 +50,13 @@ class KeyboardListener : KeyListener {
                     folder.deleteRecursively()
                     folder.mkdirs()
 
+                    Logger.info("Successfully cut out region!")
+
                     ImageIO.write(cropped, "jpg", File("${folder.absolutePath}\\region.jpg"))
 
-                    Thread.sleep(2000)
+                    Thread.sleep(1500)
 
-                    println(TextRecognizer.detect())
+                    println("Detection:\n${TextRecognizer.detect()}")
                 }
             }
         }
