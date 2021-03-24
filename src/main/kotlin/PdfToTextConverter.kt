@@ -14,7 +14,7 @@ object PdfToTextConverter {
 
         // Requires Ghostscript
 
-        /*ImageConverter.convert(file)*/
+        ImageConverter.convert(file)
 
         Userinterface.open()
 
