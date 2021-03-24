@@ -1,11 +1,13 @@
 package userinterface
 
-import userinterface.listener.ClickListener
+import userinterface.listener.MouseClickListener
+import userinterface.listener.MouseMotionListener
 import java.awt.*
 import java.io.File
 import javax.imageio.ImageIO
 import javax.swing.JComponent
 import javax.swing.JFrame
+import kotlin.math.absoluteValue
 
 object Userinterface {
 
@@ -13,6 +15,11 @@ object Userinterface {
 
     private var images = mutableListOf<File>()
     private var curImageIndex = 0
+
+    var dragStartX = 0
+    var dragStartY = 0
+    var dragEndX = 0
+    var dragEndY = 0
 
     fun open() {
 
@@ -54,20 +61,35 @@ object Userinterface {
                 )
 
                 val image = ImageIO.read(images[curImageIndex])
-                g.drawImage(image,0,-35,638,825,this)
+                g.drawImage(image, 0, -35, 638, 825, this)
 
                 g.font = g.font.deriveFont(72f)
                 g.color = Color.black
 
-                g.drawString("<",10,371)
-                g.drawString(">",575,371)
+                g.drawString("<", 10, 371)
+                g.drawString(">", 575, 371)
+
+
+                val rectW = (dragEndX - dragStartX).absoluteValue
+                val rectH = (dragEndY - dragStartY).absoluteValue
+                val color = Color.decode("#3498db")
+
+                g.color = color
+                g.stroke = BasicStroke(3f)
+                g.drawRect(dragStartX, dragStartY, rectW, rectH)
+
+                g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f)
+                g2.fillRect(dragStartX, dragStartY, rectW, rectH)
+
+                g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)
 
             }
         }
 
         frame.add(comp)
 
-        frame.addMouseListener(ClickListener())
+        frame.addMouseListener(MouseClickListener())
+        frame.addMouseMotionListener(MouseMotionListener())
 
         frame.size = Dimension(638, 825)
         frame.isResizable = false
@@ -79,7 +101,7 @@ object Userinterface {
         frame.isAlwaysOnTop = false
 
         Thread {
-            while(true) {
+            while (true) {
                 Thread.sleep(1000 / 60)
                 frame.repaint()
             }
@@ -88,17 +110,17 @@ object Userinterface {
     }
 
     fun nextImage() {
-        if(curImageIndex == (images.size - 1)) {
+        if (curImageIndex == (images.size - 1)) {
             curImageIndex = 0
-        }else {
+        } else {
             curImageIndex++
         }
     }
 
     fun previousImage() {
-        if(curImageIndex == 0) {
+        if (curImageIndex == 0) {
             curImageIndex = images.size - 1
-        }else {
+        } else {
             curImageIndex--
         }
     }
