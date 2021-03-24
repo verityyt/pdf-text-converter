@@ -6,7 +6,6 @@ import java.io.File
 
 object PdfToTextConverter {
 
-    val file = File("C:\\Users\\joshs\\Desktop\\Test.pdf")
     val tesseractData = File("C:\\Users\\joshs\\Desktop\\")
     val temp = File("${System.getProperty("java.io.tmpdir")}\\pdfTextConverter\\")
 
@@ -15,9 +14,13 @@ object PdfToTextConverter {
 
         // Requires Ghostscript
 
-        Logger.info("Please select a file!")
+        val choice = FileChooser.open()
 
-        ImageConverter.convert(file)
+        if(choice == null) {
+            exitProcess(-1)
+        }else {
+            ImageConverter.convert(choice)
+        }
 
         Userinterface.open()
 
