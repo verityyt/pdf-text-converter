@@ -11,9 +11,9 @@ object PdfToTextConverter {
 
         val file = File("C:\\Users\\joshs\\Desktop\\Test.pdf")
 
-        Userinterface.open()
+        ImageConverter.convert(file)
 
-        /*ImageConverter.convert(file)*/
+        Userinterface.open()
 
     }
 
