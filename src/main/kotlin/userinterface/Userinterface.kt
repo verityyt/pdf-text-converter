@@ -74,7 +74,9 @@ object Userinterface {
         frame.isUndecorated = false
         frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         frame.title = "PDF to Text Converter"
+        frame.isAlwaysOnTop = true
         frame.isVisible = true
+        frame.isAlwaysOnTop = false
 
         Thread {
             while(true) {
