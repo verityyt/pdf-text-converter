@@ -1,5 +1,6 @@
 package userinterface
 
+import userinterface.listener.KeyboardListener
 import userinterface.listener.MouseClickListener
 import userinterface.listener.MouseMotionListener
 import java.awt.*
@@ -69,9 +70,8 @@ object Userinterface {
                 g.drawString("<", 10, 371)
                 g.drawString(">", 575, 371)
 
-
-                val rectW = (dragEndX - dragStartX).absoluteValue
-                val rectH = (dragEndY - dragStartY).absoluteValue
+                val rectW = (dragEndX - dragStartX)
+                val rectH = (dragEndY - dragStartY)
                 val color = Color.decode("#3498db")
 
                 g.color = color
@@ -90,6 +90,7 @@ object Userinterface {
 
         frame.addMouseListener(MouseClickListener())
         frame.addMouseMotionListener(MouseMotionListener())
+        frame.addKeyListener(KeyboardListener())
 
         frame.size = Dimension(638, 825)
         frame.isResizable = false
@@ -123,6 +124,10 @@ object Userinterface {
         } else {
             curImageIndex--
         }
+    }
+
+    fun getCurrent(): File {
+        return images[curImageIndex]
     }
 
 }
