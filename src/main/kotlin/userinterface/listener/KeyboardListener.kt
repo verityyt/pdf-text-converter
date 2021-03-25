@@ -2,6 +2,7 @@ package userinterface.listener
 
 import sun.rmi.runtime.Log
 import userinterface.Userinterface
+import userinterface.screens.EndScreen
 import userinterface.screens.PdfViewerScreen
 import utils.Logger
 import utils.TextRecognizer
@@ -62,8 +63,10 @@ class KeyboardListener : KeyListener {
 
                     Thread.sleep(1500)
 
+                    val recognition = TextRecognizer.detect()
+
                     Toolkit.getDefaultToolkit().systemClipboard.setContents(
-                        StringSelection(TextRecognizer.detect()),
+                        StringSelection(recognition),
                         null
                     )
                 }

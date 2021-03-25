@@ -10,4 +10,8 @@ abstract class Screen {
 
     abstract fun paint(g: Graphics, g2: Graphics2D, observer: ImageObserver)
 
+    abstract fun mouseClick(x: Int, y: Int)
+
+    abstract fun mouseMove(x: Int, y: Int)
+
 }

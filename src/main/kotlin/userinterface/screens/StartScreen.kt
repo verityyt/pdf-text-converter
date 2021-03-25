@@ -70,4 +70,8 @@ class StartScreen : Screen() {
 
     }
 
+    override fun mouseClick(x: Int, y: Int) { }
+
+    override fun mouseMove(x: Int, y: Int) { }
+
 }

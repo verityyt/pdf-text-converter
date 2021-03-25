@@ -17,13 +17,7 @@ class MouseClickListener : MouseListener {
                 widget.mouseClick(x, y)
             }
 
-            if (Userinterface.screen is PdfViewerScreen) {
-                if (x > 7 && x < (7 + 100) && y > 320 && y < (320 + 75)) {
-                    (Userinterface.screen as PdfViewerScreen).previousImage()
-                } else if (x > 570 && x < (570 + 100) && y > 320 && y < (320 + 75)) {
-                    (Userinterface.screen as PdfViewerScreen).nextImage()
-                }
-            }
+            Userinterface.screen.mouseClick(x, y)
 
         }
     }

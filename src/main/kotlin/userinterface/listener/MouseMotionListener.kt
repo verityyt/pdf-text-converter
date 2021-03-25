@@ -22,6 +22,8 @@ class MouseMotionListener : MouseMotionListener {
             for (widget in Userinterface.screen.widgets) {
                 widget.mouseMove(x, y)
             }
+
+            Userinterface.screen.mouseMove(x, y)
         }
     }
 

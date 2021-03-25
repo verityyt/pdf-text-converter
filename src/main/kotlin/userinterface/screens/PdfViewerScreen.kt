@@ -56,7 +56,17 @@ class PdfViewerScreen : Screen() {
         g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)
     }
 
-    fun nextImage() {
+    override fun mouseClick(x: Int, y: Int) {
+        if (x > 7 && x < (7 + 100) && y > 320 && y < (320 + 75)) {
+            previousImage()
+        } else if (x > 570 && x < (570 + 100) && y > 320 && y < (320 + 75)) {
+            nextImage()
+        }
+    }
+
+    override fun mouseMove(x: Int, y: Int) { }
+
+    private fun nextImage() {
         if (curImageIndex == (images.size - 1)) {
             curImageIndex = 0
         } else {
@@ -64,7 +74,7 @@ class PdfViewerScreen : Screen() {
         }
     }
 
-    fun previousImage() {
+    private fun previousImage() {
         if (curImageIndex == 0) {
             curImageIndex = images.size - 1
         } else {
