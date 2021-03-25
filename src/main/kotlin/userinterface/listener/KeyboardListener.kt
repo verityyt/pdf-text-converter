@@ -69,6 +69,8 @@ class KeyboardListener : KeyListener {
                         StringSelection(recognition),
                         null
                     )
+
+                    Userinterface.loadScreen(EndScreen(recognition))
                 }
             }
         }
