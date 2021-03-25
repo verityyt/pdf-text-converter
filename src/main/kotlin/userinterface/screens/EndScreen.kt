@@ -4,6 +4,7 @@ import userinterface.Screen
 import userinterface.Userinterface
 import userinterface.Widget
 import userinterface.utils.CustomFont
+import utils.SoundManager
 import java.awt.*
 import java.awt.datatransfer.StringSelection
 import java.awt.image.ImageObserver
@@ -67,6 +68,7 @@ class EndScreen(val recognition: String) : Screen() {
                 ignoreHover = true
                 hoveredCopy = false
 
+                SoundManager.playSound("copy")
                 Toolkit.getDefaultToolkit().systemClipboard.setContents(
                     StringSelection(recognition),
                     null
