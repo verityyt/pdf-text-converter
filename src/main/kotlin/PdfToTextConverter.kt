@@ -13,17 +13,6 @@ object PdfToTextConverter {
 
         Userinterface.open()
 
-        /*val choice = FileChooser.open()
-
-        if(choice == null) {
-            exitProcess(-1)
-        }else {
-            ImageConverter.convert(choice)
-        }
-
-        Userinterface.open()
-        Userinterface.setTitle(extension = "Select a region and press ENTER")*/
-
     }
 
 }
