@@ -11,8 +11,6 @@ object PdfToTextConverter {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        // Requires Ghostscript
-
         if(checkOs()) {
             Userinterface.open()
         }

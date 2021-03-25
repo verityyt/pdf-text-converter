@@ -8,6 +8,10 @@ This is a software to get text from a pdf, even if it consists out of images.
 3. Select a region
 4. Press <code>ENTER</code> to process
 
+## 📒 Requirements
+- <code>Ghostscript</code> installed
+- <code>Windows 10</code> operating system
+
 ## ⚠️ Attention
 - Currently only <code>Windows 10</code> is supported
 - Software only supports <code>Portable Document Format (.pdf)</code> files
