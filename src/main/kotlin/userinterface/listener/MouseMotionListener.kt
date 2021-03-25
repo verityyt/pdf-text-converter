@@ -13,6 +13,15 @@ class MouseMotionListener : MouseMotionListener {
         }
     }
 
-    override fun mouseMoved(event: MouseEvent?) {}
+    override fun mouseMoved(event: MouseEvent?) {
+        if (event != null) {
+            val x = event.x
+            val y = event.y
+
+            for (widget in Userinterface.screen.widgets) {
+                widget.mouseMove(x, y)
+            }
+        }
+    }
 
 }
