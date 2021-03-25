@@ -1,10 +1,5 @@
-import userinterface.FileChooser
 import userinterface.Userinterface
-import utils.ImageConverter
-import utils.Logger
-import utils.TextRecognizer
 import java.io.File
-import kotlin.system.exitProcess
 
 object PdfToTextConverter {
 
@@ -16,7 +11,9 @@ object PdfToTextConverter {
 
         // Requires Ghostscript
 
-        val choice = FileChooser.open()
+        Userinterface.open()
+
+        /*val choice = FileChooser.open()
 
         if(choice == null) {
             exitProcess(-1)
@@ -25,7 +22,7 @@ object PdfToTextConverter {
         }
 
         Userinterface.open()
-        Userinterface.setTitle(extension = "Select a region and press ENTER")
+        Userinterface.setTitle(extension = "Select a region and press ENTER")*/
 
     }
 

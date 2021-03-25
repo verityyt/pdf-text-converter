@@ -3,6 +3,8 @@ package userinterface
 import userinterface.listener.KeyboardListener
 import userinterface.listener.MouseClickListener
 import userinterface.listener.MouseMotionListener
+import userinterface.screens.StartScreen
+import userinterface.utils.CustomFont
 import utils.Logger
 import java.awt.*
 import java.io.File
@@ -23,10 +25,15 @@ object Userinterface {
     var dragEndY = 0
 
     var show = true
+    var screen: Screen = StartScreen()
+
+    val icon = ImageIO.read(File("files\\images\\icon.png"))
 
     fun open() {
 
         Logger.info("Opening frame...")
+
+        CustomFont.registerFonts()
 
         val converted = File("${PdfToTextConverter.temp.absolutePath}\\converted\\")
 
@@ -38,34 +45,7 @@ object Userinterface {
 
         val comp = object : JComponent() {
             override fun paint(g: Graphics) {
-                if (show) {
-                    val g2 = g as Graphics2D
-
-                    g2.setRenderingHint(
-                        RenderingHints.KEY_RENDERING,
-                        RenderingHints.VALUE_RENDER_QUALITY
-                    )
-                    g2.setRenderingHint(
-                        RenderingHints.KEY_ANTIALIASING,
-                        RenderingHints.VALUE_ANTIALIAS_ON
-                    )
-                    g2.setRenderingHint(
-                        RenderingHints.KEY_TEXT_ANTIALIASING,
-                        RenderingHints.VALUE_TEXT_ANTIALIAS_ON
-                    )
-                    g2.setRenderingHint(
-                        RenderingHints.KEY_STROKE_CONTROL,
-                        RenderingHints.VALUE_STROKE_NORMALIZE
-                    )
-                    g2.setRenderingHint(
-                        RenderingHints.KEY_INTERPOLATION,
-                        RenderingHints.VALUE_INTERPOLATION_BILINEAR
-                    )
-                    g2.setRenderingHint(
-                        RenderingHints.KEY_FRACTIONALMETRICS,
-                        RenderingHints.VALUE_FRACTIONALMETRICS_ON
-                    )
-
+                /*if (show) {
                     val image = ImageIO.read(images[curImageIndex])
                     g.drawImage(image, 0, -35, 638, 825, this)
 
@@ -87,7 +67,36 @@ object Userinterface {
                     g2.fillRect(dragStartX, dragStartY, rectW, rectH)
 
                     g2.composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f)
-                }
+                }*/
+
+                val g2 = g as Graphics2D
+
+                g2.setRenderingHint(
+                    RenderingHints.KEY_RENDERING,
+                    RenderingHints.VALUE_RENDER_QUALITY
+                )
+                g2.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON
+                )
+                g2.setRenderingHint(
+                    RenderingHints.KEY_TEXT_ANTIALIASING,
+                    RenderingHints.VALUE_TEXT_ANTIALIAS_ON
+                )
+                g2.setRenderingHint(
+                    RenderingHints.KEY_STROKE_CONTROL,
+                    RenderingHints.VALUE_STROKE_NORMALIZE
+                )
+                g2.setRenderingHint(
+                    RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BILINEAR
+                )
+                g2.setRenderingHint(
+                    RenderingHints.KEY_FRACTIONALMETRICS,
+                    RenderingHints.VALUE_FRACTIONALMETRICS_ON
+                )
+
+                screen.paint(g, g as Graphics2D, this)
             }
         }
 
@@ -102,6 +111,7 @@ object Userinterface {
         frame.isUndecorated = false
         frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
         frame.title = "PDF to Text Converter"
+        frame.iconImage = icon
         frame.isAlwaysOnTop = true
         frame.isVisible = true
         frame.isAlwaysOnTop = false
