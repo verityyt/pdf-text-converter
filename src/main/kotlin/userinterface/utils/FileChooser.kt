@@ -1,4 +1,4 @@
-package userinterface
+package userinterface.utils
 
 import java.io.File
 import javax.swing.JFileChooser
