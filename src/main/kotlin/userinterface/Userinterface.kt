@@ -58,7 +58,7 @@ object Userinterface {
                     RenderingHints.VALUE_FRACTIONALMETRICS_ON
                 )
 
-                screen.paint(g, g as Graphics2D, this)
+                screen.paint(g, g, this)
             }
         }
 
@@ -77,6 +77,13 @@ object Userinterface {
         frame.isAlwaysOnTop = true
         frame.isVisible = true
         frame.isAlwaysOnTop = false
+
+        val screenWidth = Toolkit.getDefaultToolkit().screenSize.width
+        val screenHeight = Toolkit.getDefaultToolkit().screenSize.height
+        val frameWidth = frame.size.width
+        val frameHeight = frame.size.height
+
+        frame.move(((screenWidth - frameWidth) / 2), ((screenHeight - frameHeight) / 2))
 
         Logger.info("Opened frame (on top)!")
 
