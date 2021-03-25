@@ -2,6 +2,7 @@ package userinterface.listener
 
 import sun.rmi.runtime.Log
 import userinterface.Userinterface
+import userinterface.screens.PdfViewerScreen
 import utils.Logger
 import utils.TextRecognizer
 import java.awt.Color
@@ -28,22 +29,24 @@ class KeyboardListener : KeyListener {
             val keyCode = event.keyCode
             val keyChar = event.keyChar
 
-            if (keyCode == 10) {
-                if (Userinterface.dragStartY != 0) {
+            if (keyCode == 10 && Userinterface.screen is PdfViewerScreen) {
+                if ((Userinterface.screen as PdfViewerScreen).dragStartY != 0) {
                     Logger.info("Cutting out regions...")
 
                     Logger.debug("Calculate region coordinates...")
 
-                    val image = ImageIO.read(Userinterface.getCurrent())!!
-                    val rectW = (Userinterface.dragEndX - Userinterface.dragStartX)
-                    val rectH = ((Userinterface.dragEndY + 35) - (Userinterface.dragStartY + 35))
+                    val image = ImageIO.read((Userinterface.screen as PdfViewerScreen).getCurrent())!!
+                    val rectW =
+                        ((Userinterface.screen as PdfViewerScreen).dragEndX - (Userinterface.screen as PdfViewerScreen).dragStartX)
+                    val rectH =
+                        (((Userinterface.screen as PdfViewerScreen).dragEndY + 35) - ((Userinterface.screen as PdfViewerScreen).dragStartY + 35))
 
                     Logger.debug("Calculation finished! Cropping image...")
 
                     val cropped = cropImage(
                         image,
-                        Userinterface.dragStartX,
-                        Userinterface.dragStartY + 35,
+                        (Userinterface.screen as PdfViewerScreen).dragStartX,
+                        (Userinterface.screen as PdfViewerScreen).dragStartY + 35,
                         rectW,
                         rectH,
                     )!!
@@ -59,9 +62,10 @@ class KeyboardListener : KeyListener {
 
                     Thread.sleep(1500)
 
-                    Userinterface.setTitle(extension = "Copied to clipboard")
-                    Userinterface.show = false
-                    Toolkit.getDefaultToolkit().systemClipboard.setContents(StringSelection(TextRecognizer.detect()), null)
+                    Toolkit.getDefaultToolkit().systemClipboard.setContents(
+                        StringSelection(TextRecognizer.detect()),
+                        null
+                    )
                 }
             }
         }

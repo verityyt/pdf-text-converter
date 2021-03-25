@@ -1,15 +1,16 @@
 package userinterface.listener
 
 import userinterface.Userinterface
+import userinterface.screens.PdfViewerScreen
 import java.awt.event.MouseEvent
 import java.awt.event.MouseMotionListener
 
 class MouseMotionListener : MouseMotionListener {
 
     override fun mouseDragged(event: MouseEvent?) {
-        if (event != null) {
-            Userinterface.dragEndX = event.x
-            Userinterface.dragEndY = event.y
+        if (event != null && Userinterface.screen is PdfViewerScreen) {
+            (Userinterface.screen as PdfViewerScreen).dragEndX = event.x
+            (Userinterface.screen as PdfViewerScreen).dragEndY = event.y
         }
     }
 
