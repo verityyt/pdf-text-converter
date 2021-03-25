@@ -53,7 +53,7 @@ class StartScreen : Screen() {
         g.font = CustomFont.light?.deriveFont(24f)
         g.drawString("How does it work?", 35, 375)
 
-        g.drawString("1. Select a PDF (Portable Document File)", 35, 440)
+        g.drawString("1. Select a PDF (Portable Document Format)", 35, 440)
         g.drawString("2. Choose a page", 35, 470)
         g.drawString("3. Select region", 35, 500)
         g.drawString("4. Press ENTER", 35, 530)
