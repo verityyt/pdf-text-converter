@@ -25,8 +25,8 @@ class MouseClickListener : MouseListener {
     override fun mousePressed(event: MouseEvent?) {
         if (event != null) {
             if (Userinterface.screen is PdfViewerScreen) {
-                (Userinterface.screen as PdfViewerScreen).dragStartX = event.x
-                (Userinterface.screen as PdfViewerScreen).dragStartY = event.y
+                (Userinterface.screen as PdfViewerScreen).dragStartX = event.x - 5
+                (Userinterface.screen as PdfViewerScreen).dragStartY = event.y - 25
             }
         }
     }
