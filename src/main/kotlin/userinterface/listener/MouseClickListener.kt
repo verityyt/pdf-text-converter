@@ -10,8 +10,8 @@ class MouseClickListener : MouseListener {
     override fun mouseClicked(event: MouseEvent?) {
         if (event != null) {
 
-            val x = event.x
-            val y = event.y
+            val x = event.x - 5
+            val y = event.y - 25
 
             for (widget in Userinterface.screen.widgets) {
                 widget.mouseClick(x, y)
