@@ -2,3 +2,5 @@
 /.gradle/
 /.idea/
 /output/
+/files/config.json
+/files/tessdata/
