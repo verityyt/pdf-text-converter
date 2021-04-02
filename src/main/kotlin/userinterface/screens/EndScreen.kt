@@ -46,7 +46,11 @@ class EndScreen(val recognition: String) : Screen() {
         g.font = CustomFont.light?.deriveFont(24f)
         g.drawString("\"$recognitionDisplay\"", 80 + 40, 372 + 90)
 
-        g.drawImage(ImageIO.read(File("files\\images\\copy.png")), 35 + 40, 340 + 90, 45, 45, observer)
+        if(PdfToTextConverter.useForBuild) {
+            g.drawImage(ImageIO.read(File("images\\copy.png")), 35 + 40, 340 + 90, 45, 45, observer)
+        }else {
+            g.drawImage(ImageIO.read(File("files\\images\\copy.png")), 35 + 40, 340 + 90, 45, 45, observer)
+        }
 
         if (hoveredCopy) {
             g2.color = Color.decode("#95a5a6")

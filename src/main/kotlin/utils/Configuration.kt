@@ -6,7 +6,11 @@ import java.io.File
 
 object Configuration {
 
-    private val file = File("files\\config.json")
+    private val file = if(PdfToTextConverter.useForBuild) {
+        File("config.json")
+    }else {
+        File("files\\config.json")
+    }
 
     val exists = file.exists()
 

@@ -19,7 +19,11 @@ object Userinterface {
 
     var screen: Screen = StartScreen()
 
-    val icon = ImageIO.read(File("files\\images\\icon.png"))
+    val icon = if(PdfToTextConverter.useForBuild) {
+        ImageIO.read(File("images\\icon.png"))
+    }else {
+        ImageIO.read(File("files\\images\\icon.png"))
+    }
 
     fun open() {
 

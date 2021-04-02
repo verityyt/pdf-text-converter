@@ -6,6 +6,9 @@ import javax.swing.*
 
 object PdfToTextConverter {
 
+    var useForBuild = false
+    var version = 1.0
+
     var tesseractData = File("")
     val temp = File("${System.getProperty("java.io.tmpdir")}\\pdfTextConverter\\")
 
