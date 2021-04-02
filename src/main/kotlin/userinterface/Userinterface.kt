@@ -76,7 +76,7 @@ object Userinterface {
         frame.isResizable = false
         frame.isUndecorated = false
         frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-        frame.title = "PDF to Text Converter"
+        frame.title = "PDF to Text Converter | v${PdfToTextConverter.version}"
         frame.iconImage = icon
         frame.isAlwaysOnTop = true
         frame.isVisible = true
