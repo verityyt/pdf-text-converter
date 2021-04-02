@@ -3,7 +3,7 @@
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
   <jar>D:\Development\Workspace\Kotlin\pdf-text-converter\build\libs\PdfToTextConverter.jar</jar>
-  <outfile>D:\Development\Workspace\Kotlin\pdf-text-converter\launch4j\Pdf To Text Converter.exe</outfile>
+  <outfile>D:\Development\Workspace\Kotlin\pdf-text-converter\launch4j\PdfToTextConverter.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
