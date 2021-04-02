@@ -11,18 +11,13 @@ This is a software to get text from a pdf, even if it consists out of images.
 ## How to install
 
 ### Windows
-Currently the only way to run the assistant is, to **clone this repository** and **compile it yourself**.
-
-After you cloned to repo, you have to **import/build the gradle project**.
-
-And run the **PdfToTextConverter.kt** *(Object)* in **src/main/kotlin/**
+Download the setup from the [latest release](https://github.com/verityyt/pdf-text-converter/releases/latest) and run the setup file.
 
 **NOTE: Take a look at the <code>Requirements</code>** and check if every Requirement is fulfilled
 
 ## Requirements
 - <code>Ghostscript</code> installed
 - <code>Windows 10</code> operating system
-- <code>gsdll64.dll</code> in the runtime directory
 
 ## Attention
 - Currently only <code>Windows 10</code> is supported
